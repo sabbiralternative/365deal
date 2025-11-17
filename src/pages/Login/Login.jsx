@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { useForm } from "react-hook-form";
 import { Settings } from "../../api";
@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const [handleLogin] = useLoginMutation();
   const { register, handleSubmit } = useForm();
@@ -134,8 +134,8 @@ const Login = () => {
                           <div className="width-400 col-sm-8 col-md-5 col-12">
                             <div className="primary--border bg-card-color-opacity v-card v-sheet theme--dark">
                               <div className="v-card__text text-center">
-                                <a
-                                  href="/"
+                                <Link
+                                  to="/"
                                   className="nuxt-link-active"
                                   hrefLang="en"
                                 >
@@ -162,7 +162,7 @@ const Login = () => {
                                       style={{ width: "980px" }}
                                     />
                                   </div>
-                                </a>
+                                </Link>
                                 <form
                                   onSubmit={handleSubmit(onSubmit)}
                                   noValidate="novalidate"
@@ -245,7 +245,7 @@ const Login = () => {
                                                 type="button"
                                                 aria-label=" appended action"
                                                 className={`v-icon notranslate v-icon--link mdi ${
-                                                  showPassword
+                                                  !showPassword
                                                     ? "mdi-eye-off"
                                                     : "mdi-eye"
                                                 } theme--dark`}
@@ -253,10 +253,26 @@ const Login = () => {
                                             </div>
                                           </div>
                                         </div>
-                                        <div className="v-text-field__details">
-                                          <div className="v-messages theme--dark">
+                                        <div
+                                          style={{
+                                            alignItems: "center",
+                                            justifyContent: "end",
+                                          }}
+                                          className="v-text-field__details"
+                                        >
+                                          <Link
+                                            to="/forgot-password"
+                                            style={{
+                                              fontSize: "12px",
+                                              textDecoration: "underline",
+                                            }}
+                                          >
+                                            {" "}
+                                            Forgot Password?
+                                          </Link>
+                                          {/* <div className="v-messages theme--dark">
                                             <div className="v-messages__wrapper" />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
@@ -282,6 +298,15 @@ const Login = () => {
                                       Login
                                     </span>
                                   </button>
+                                  <button
+                                    onClick={loginWithDemo}
+                                    style={{ marginTop: "5px" }}
+                                    type="button"
+                                    className="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--dark v-size--large primary"
+                                    id="loginBtn"
+                                  >
+                                    <span className="v-btn__content">Demo</span>
+                                  </button>
                                   <div className="row mt-2">
                                     <div className="col"></div>
                                   </div>
@@ -304,15 +329,21 @@ const Login = () => {
                                   </a>
                                 </div> */}
                               </div>
-                              <a
-                                onClick={loginWithDemo}
-                                className="nuxt-link-active"
-                                hrefLang="en"
+
+                              <div
+                                style={{ fontSize: "14px" }}
+                                className="text-center my-4"
                               >
-                                <div className="text-center my-4">
-                                  Continue as Guest
-                                </div>
-                              </a>
+                                <span> New user?</span>
+                                <Link
+                                  style={{ marginLeft: "5px" }}
+                                  to="/register"
+                                  className="nuxt-link-active"
+                                  hrefLang="en"
+                                >
+                                  Create an account
+                                </Link>
+                              </div>
                             </div>
                           </div>
                         </div>

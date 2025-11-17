@@ -194,6 +194,14 @@ const Header = () => {
                     <span className="white--text">Login</span>
                   </span>
                 </Link>
+                <Link
+                  to="/register"
+                  className="mr-2 loginBtn primary-boxshadow font-weight-bold v-btn v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--dark v-size--large"
+                >
+                  <span className="v-btn__content">
+                    <span className="white--text">Register</span>
+                  </span>
+                </Link>
               </div>
             </span>
           </div>
